@@ -1,14 +1,10 @@
+/* Requires the Docker Pipeline plugin */
 pipeline {
-    agent {
-        docker {
-            image 'maven:3-alpine' 
-            args '-v /root/.m2:/root/.m2' 
-        }
-    }
+    agent { docker { image 'python:3.12.1-alpine3.19' } }
     stages {
-        stage('Build') { 
+        stage('build') {
             steps {
-                sh 'mvn -B -DskipTests clean package' 
+                sh 'python --version'
             }
         }
     }
